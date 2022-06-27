@@ -9,7 +9,14 @@ const categories = [
 ]
 // Get categories
 router.get('/', (req, res) => {
-    res.status(200).send(categories)
+    // res.status(200).send(categories)
+    res.render(`addCategoriy` , {
+        title : `Categories`,
+        categories
+    })
+})
+router.get(`/cars` , (req, res)=>{
+    res.render(`about`)
 })
 // Get categoriy with  id
 router.get('/:id', (req, res) => {
@@ -17,7 +24,8 @@ router.get('/:id', (req, res) => {
     if (!сategoriy) {
         return res.status(404).send('404 not found')
     }
-    res.status(200).send(сategoriy)
+    // res.status(200).send(сategoriy)
+    res.render(`index.pug`)
 })
 //  Delete categoriy with id
 router.delete('/delete/:id', (req, res) => {
@@ -46,7 +54,13 @@ router.post('/add', (req, res) => {
         id: categories.length + 1 // 
     }
     categories.push(categoriy)
-    res.status(201).send('Categoriy created successfull')
+    // res.status(201).send('Categoriy created successfull')
+    // res.render(`addCategoriy` , {
+    //     title : `Add categoriy`
+    // })
+    res.render('addCategoriy' , {
+        title: 'Add Categoriy'
+    })
 })
 // Put lesson with id
 router.put('/update/:id', (req, res) => {

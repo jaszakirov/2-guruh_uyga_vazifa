@@ -5,11 +5,14 @@ const authMiddleware = require('./middleware/auth')
 const morgan = require('morgan')
 const helmet = require('helmet')
 const path = require(`path`)
+const pug = require(`pug`)
 // dotenv
 require(`dotenv`).config()
 // require routers
 const homeroutes  = require(`./routes/home`)
 const carsroutes  = require(`./routes/cars`)
+// View engine Pug connection
+app.set('view engine' , 'pug')
 // Middleware functions
 app.use(express.json())
 //  urlencoded midlware 
@@ -23,6 +26,8 @@ app.use(helmet())
 app.use(express.static(path.join(__dirname, `public`)))
 // Routing
 app.use( `/`, homeroutes)
+// About 
+app.use(`/api/about` , carsroutes )
 // Get categories
 app.use( `/api/categories` , carsroutes)
 // Get categoriy with id

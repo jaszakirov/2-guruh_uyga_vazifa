@@ -1,0 +1,11 @@
+extends layuots/layout
+block content
+    h1= title
+    table
+        tr 
+            th Id 
+            th Name 
+        each cat in categories
+            tr
+            td= cat.id
+            td= cat.name
