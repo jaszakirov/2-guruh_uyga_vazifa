@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
 const Joi = require('joi')
-const authMiddleware = require('./middleware/auth')
 const morgan = require('morgan')
 const helmet = require('helmet')
 const path = require(`path`)
 const pug = require(`pug`)
+
 // dotenv
 require(`dotenv`).config()
 // require routers
@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended:true}))
 if(process.env.EVITRMENT == `development`){
     app.use(morgan('tiny'))
 }
-app.use(helmet())
+// app.use(helmet())
 // express stsic midlware
 app.use(express.static(path.join(__dirname, `public`)))
 // Routing

@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
     res.render(`index`, {
         titile : 'Home page' ,
         categories 
-
     })
 })
 

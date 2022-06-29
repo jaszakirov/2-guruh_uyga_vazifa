@@ -8,11 +8,21 @@
 .navbar{
     background: black;
 }
-table{
-    max-width: 250px;
-    margin: auto;
+h1{
+    text-align: center;
 }
 .bodycontent{
     max-width: 650px;
     margin: auto;
+    height: 99vh;
+}
+th{
+    padding-right: 100px;
+    padding-top: 15px;
+}
+tbody, td, tfoot, th, thead, tr{
+    padding-bottom: 15px;
+}
+.btn{
+    margin-right: 15px;
 }

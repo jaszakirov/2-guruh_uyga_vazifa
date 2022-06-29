@@ -1,0 +1,29 @@
+extends layuots/layout
+block content
+    h1= title
+    if categories.length == 0 
+        h2 Categoriy is empty
+    else
+        table 
+            tr 
+                thead 
+                    th Img 
+                    th Name    
+                    th Year 
+                    th Price   
+                tbody 
+                        each cat in categories
+                             tr 
+                                td 
+                                    img(src=cat.img, alt="" , style="width:100px ; height:50px")
+                                td= cat.name
+                                td= cat.year 
+                                td= cat.price   
+                                td 
+                                    a(href="/api/categories/delete/"+cat.id class="btn btn-outline-danger") Delete
+                                td 
+                                    a(href="/api/categories/update/"+cat.id ) 
+                                        img(src="/img/icons8-редактировать-свойство-80.png" alt="")
+    a(href="/api/categories/add" class="btn btn-primary" )  Add Categoriy        
+
+        
