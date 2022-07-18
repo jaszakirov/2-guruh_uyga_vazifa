@@ -5,6 +5,9 @@
     text-decoration: none;
 
 }
+.card{
+    margin-top: 15px;
+}
 .navbar{
     background: black;
 }
@@ -25,4 +28,10 @@ tbody, td, tfoot, th, thead, tr{
 }
 .btn{
     margin-right: 15px;
+}
+.main {
+    background-color: bisque;
+}
+.navbar-light .navbar-nav .nav-link{
+    color: aliceblue !important;
 }

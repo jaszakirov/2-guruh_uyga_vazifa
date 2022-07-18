@@ -1,0 +1,43 @@
+<h1>{{title}}</h1>
+{{#if categories }}
+<table>
+    <tr>
+        <thead>
+            <th>Img</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Price</th>
+        </thead>
+    </tr>
+    <tbody>
+        {{#each categories}}
+        <tr>
+            <td>
+                <img src="{{img}}" alt="" style="width: 64px ; height: 64px;">
+            </td>
+            <td>
+                <a href="/api/categories/{{id}}">{{name}}</a>
+            </td>
+            <td>
+                {{year}}
+            </td>
+            <td>
+                {{price}}
+            </td>
+            <td>
+                <a href="/api/categories/delete/{{id}}" class="btn btn-outline-danger"> Delete</a>
+            </td>
+            <td>
+                <form action="/api/card/add" method="post">
+                <input type="hidden" value="{{id}}" name="id">
+                <button type="submit"class="btn btn-outline-dark"  >Buy</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<h2>Card is empty</h2>
+{{/if}}
+<a href="/api/categories/add" class="btn btn-primary">Add Categoriy</a>

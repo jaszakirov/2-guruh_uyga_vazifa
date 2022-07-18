@@ -16,7 +16,8 @@ block content
                              tr 
                                 td 
                                     img(src=cat.img, alt="" , style="width:100px ; height:50px")
-                                td= cat.name
+                                td
+                                    a(href="/api/categories/"+cat.id)= cat.name 
                                 td= cat.year 
                                 td= cat.price   
                                 td 

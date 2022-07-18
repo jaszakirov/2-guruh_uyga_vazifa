@@ -1,0 +1,49 @@
+<h1>card</h1>
+<h1>{{title}}</h1>
+{{#if items }}
+<table id="card">
+    <tr>
+        <thead>
+            <th>Img</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Count</th>
+            <th>price</th>
+            <th>CountPrice</th>
+        </thead>
+    </tr>
+    <tbody>
+        {{#each items}}
+        <tr>
+            <td>
+                <img src="{{img}}" alt="" style="width: 64px ; height: 64px;">
+            </td>
+            <td>
+               {{name}}
+            </td>
+            <td>
+                {{year}}
+            </td>
+            <td class="count">
+                {{count}}
+            </td>
+            <td  class="price">
+                {{price}}
+            </td>
+            <td  class="countPrice">
+                <span >0</span>
+            </td>
+            <td>
+                <a href="/api/categories/delete/{{id}}" class="btn btn-outline-danger">Delete</a>
+            </td>
+            <td>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<p class="total">{{totalprice}}</p>
+{{else}}
+<h2>Card is empty</h2>
+{{/if}}
+<a href="/api/categories">categories</a>

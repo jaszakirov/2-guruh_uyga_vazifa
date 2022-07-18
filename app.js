@@ -4,15 +4,24 @@ const Joi = require('joi')
 const morgan = require('morgan')
 const helmet = require('helmet')
 const path = require(`path`)
-const pug = require(`pug`)
+const {create} = require(`express-handlebars`)
 
 // dotenv
 require(`dotenv`).config()
 // require routers
 const homeroutes  = require(`./routes/home`)
 const carsroutes  = require(`./routes/cars`)
-// View engine Pug connection
-app.set('view engine' , 'pug')
+const cardroutes = require(`./routes/card`)
+// View engine Hbs connection
+
+const hbs = create({
+    extname : `hbs` , 
+    defaultLayout : 'main.hbs'
+
+})
+app.engine(`hbs` , hbs.engine)
+app.set('view engine' , 'hbs')
+
 // Middleware functions
 app.use(express.json())
 //  urlencoded midlware 
@@ -27,17 +36,10 @@ app.use(express.static(path.join(__dirname, `public`)))
 // Routing
 app.use( `/`, homeroutes)
 // About 
-app.use(`/api/about` , carsroutes )
-// Get categories
-app.use( `/api/categories` , carsroutes)
-// Get categoriy with id
-app.use('/api/categories/', carsroutes)
-// // Delete categoriy with id
-app.use('/api/categories/', carsroutes)
-// Post add ctegoriy
-app.use('/api/categoriy/', carsroutes)
-// Put lesson with id
-app.put('/api/categoriy/', carsroutes )
+app.use( `/api/categories/` , carsroutes)
+app.use('/api/categoriy', carsroutes)
+app.use( `/api/card` , cardroutes)
+
 const port = normalizePort(process.env.port || 3000) 
 app.listen(port , ()=>{
     console.log(`App listening on port `+ port);

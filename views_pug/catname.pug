@@ -1,0 +1,10 @@
+extends layuots/main
+block content
+    .container
+      .row
+        .card(style='width: 18rem;')
+          img.card-img-top(src=сategoriy.img  alt='...')
+          .card-body
+            p.card-text
+              | Some quick example text to build on the card title and make up the bulk of the card's content.
+            a(href="/api/categories/update/"+сategoriy.id)  Edit

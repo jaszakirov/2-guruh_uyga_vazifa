@@ -1,0 +1,17 @@
+extends layuots/layout 
+block content
+    form(action=`/api/categoriy/update/${categoriy.id}` method= "post") 
+        .mb-3
+        label.form-label(for='formGroupExampleInput') Img
+        input#formGroupExampleInput.form-control(type='img' placeholder='Img' name="img" value=categoriy.img)
+        .mb-3
+        label.form-label(for='formGroupExampleInput2') Name 
+        input#formGroupExampleInput2.form-control(type='text' placeholder='Name' name="name" value=categoriy.name )
+        .mb-3
+        label.form-label(for='formGroupExampleInput2') Year
+        input#formGroupExampleInput2.form-control(type='text' placeholder='Year' name="year" value=categoriy.year)
+        .mb-3
+        label.form-label(for='formGroupExampleInput2')  Price
+        input#formGroupExampleInput2.form-control(type='text' placeholder='Price' name="price" value=categoriy.price)
+        br 
+        button(class="btn btn-primary" type="submit")  Put Categoriy
