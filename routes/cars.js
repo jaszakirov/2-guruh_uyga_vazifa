@@ -9,13 +9,12 @@ const Categories = require(`../model/Categories`)
 // Get categories
 // Get categories
 router.get('/', async (req, res) => {
-    const categories = await Categories.getAll()
+    const categories = await Categories.find()
+    console.log(categories);
     res.render(`cars`, {
         title: `Categories`,
         categories
     })
-    // res.status(200).send(categories)
-
 })
 // add categoriy
 router.get('/add', (req, res) => {

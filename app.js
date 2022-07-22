@@ -5,6 +5,7 @@ const morgan = require('morgan')
 const helmet = require('helmet')
 const path = require(`path`)
 const {create} = require(`express-handlebars`)
+const mongoose = require(`mongoose`)
 
 // dotenv
 require(`dotenv`).config()
@@ -39,8 +40,14 @@ app.use( `/`, homeroutes)
 app.use( `/api/categories/` , carsroutes)
 app.use('/api/categoriy', carsroutes)
 app.use( `/api/card` , cardroutes)
-
+ async function db(){
+     await mongoose.connect(`mongodb+srv://Jas_Zakirov:7q0tKpMj08A4d2yg @cluster0.tgoruvj.mongodb.net/CarShop`, () => {
+         console.log(`mongoDb conected`)
+     })
+}
+db()
 const port = normalizePort(process.env.port || 3000) 
+
 app.listen(port , ()=>{
     console.log(`App listening on port `+ port);
 })
