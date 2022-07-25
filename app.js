@@ -17,7 +17,11 @@ const cardroutes = require(`./routes/card`)
 
 const hbs = create({
     extname : `hbs` , 
-    defaultLayout : 'main.hbs'
+    defaultLayout : 'main.hbs',
+    runtimeOptions : {
+        allowProtoMethodsByDefault : true , 
+        allowProtoPropertiesByDefault : true
+    }
 
 })
 app.engine(`hbs` , hbs.engine)
@@ -40,17 +44,24 @@ app.use( `/`, homeroutes)
 app.use( `/api/categories/` , carsroutes)
 app.use('/api/categoriy', carsroutes)
 app.use( `/api/card` , cardroutes)
- async function db(){
-     await mongoose.connect(`mongodb+srv://Jas_Zakirov:7q0tKpMj08A4d2yg @cluster0.tgoruvj.mongodb.net/CarShop`, () => {
-         console.log(`mongoDb conected`)
-     })
-}
-db()
+
 const port = normalizePort(process.env.port || 3000) 
 
-app.listen(port , ()=>{
-    console.log(`App listening on port `+ port);
-})
+try { 
+    async function start(){
+        await mongoose.connect(`mongodb+srv://Jas_Zakirov:7q0tKpMj08A4d2yg@cluster0.tgoruvj.mongodb.net/CarShop`, () => {
+            console.log(`mongoDb conected`)
+        })
+   }
+   start()
+    app.listen(port , ()=>{
+        console.log(`App listening on port `+ port);
+    })
+    
+} catch (error) {
+    console.log(error);
+    
+}
 function normalizePort(val){
     const num = parseInt(val)
     if(isNaN(num)){

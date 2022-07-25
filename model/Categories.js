@@ -1,5 +1,5 @@
 const {Schema , model} = require(`mongoose`)
-const catSchema  = new Schema ({
+const categoriySchema  = new Schema ({
     name:{
         required : true,
         type : String 
@@ -11,4 +11,4 @@ const catSchema  = new Schema ({
     year: Number , 
     img : String
 })
-module.exports = model('Categories' , catSchema)
+module.exports = model('Categories' , categoriySchema)

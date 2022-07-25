@@ -1,6 +1,6 @@
 <h1>card</h1>
 <h1>{{title}}</h1>
-{{#if items }}
+{{#if categories }}
 <table id="card">
     <tr>
         <thead>
@@ -13,7 +13,7 @@
         </thead>
     </tr>
     <tbody>
-        {{#each items}}
+        {{#each categories}}
         <tr>
             <td>
                 <img src="{{img}}" alt="" style="width: 64px ; height: 64px;">
@@ -34,7 +34,7 @@
                 <span >0</span>
             </td>
             <td>
-                <a href="/api/categories/delete/{{id}}" class="btn btn-outline-danger">Delete</a>
+                <a href="/api/card/delete/{{id}}" class="btn btn-outline-danger">Delete</a>
             </td>
             <td>
             </td>

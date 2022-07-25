@@ -10,7 +10,6 @@ const Categories = require(`../model/Categories`)
 // Get categories
 router.get('/', async (req, res) => {
     const categories = await Categories.find()
-    console.log(categories);
     res.render(`cars`, {
         title: `Categories`,
         categories
@@ -31,14 +30,6 @@ router.get('/catname', (req, res) => {
 router.get('/:id', async (req, res) => {
     const id = req.params.id
     const categoriy = await Categories.findById(id)
-
-
-
-    //  const categoriy = categories.find(cat => cat.id === req.params.id)
-    // if (!categoriy) {
-    //     return res.status(404).send('404 not found')
-    // }
-    // res.status(200).send(сategoriy)
     res.render(`categoriy`, {
         categoriy,
         id: req.params.id
@@ -47,14 +38,14 @@ router.get('/:id', async (req, res) => {
 //  Delete categoriy with id
 router.get('/delete/:id', authMiddleware, async (req, res) => {
     const id = req.params.id
-    const categoriy = await Categories.removeByid(id)
+    const categoriy = await Categories.findByIdAndRemove(id)
     // Validator
     // res.status(200).send('Car categoriy successfully deleted')
     res.redirect(`/api/categories`)
 })
-router.delete('/delete/:id', authMiddleware, (req, res) => {
-    res.status(200).send('Car categoriy successfully deleted')
-})
+// router.delete('/delete/:id', authMiddleware, (req, res) => {
+//     res.status(200).send('Car categoriy successfully deleted')
+// })
 // Post add ctegoriy
 
 router.post('/add', async (req, res) => {
@@ -71,11 +62,12 @@ router.post('/add', async (req, res) => {
         res.status(404).send(value.error.message)
         return
     }
-    const categoriy = new Categories(
-        req.body.name,
-        req.body.year,
-        req.body.price,
-        req.body.img)
+    const categoriy = new Categories({
+        name :  req.body.name,
+        price : req.body.price,
+        img : req.body.img ,
+        year :  req.body.year
+    })
 
     categoriy.save()
     res.redirect(`/api/categories`)
@@ -84,13 +76,11 @@ router.post('/add', async (req, res) => {
 router.post('/update/', async (req, res) => {
     const id = req.body.id
     const categoriy = await Categories.findByIdAndUpdate(id, req.body)
-
     // res.status(200).send('Categoriy updated successfull')
     res.redirect(`/api/categories`)
 })
 router.get(`/update/:id`, async (req, res) => {
     const categoriy = await Categories.findById(req.params.id)
-    console.log(req.body.id);
     res.render(`putCategoriy`, {
         categoriy
     })
